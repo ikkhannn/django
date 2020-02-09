@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}View List{% endblock %}
+ 
+{% block content %}
+    <h1>{{ls.name}}</h1>
+    <form method="post" action="#">
+    {% csrf_token %}
+        <ul>
+            {% for item in ls.projects_set.all %}
+                
+                    <li><a href="edit/{{item.id}}">{{item.project_title}}</li></a>
+
+
+            {% endfor %}
+        
+        </ul>
+        <!-- <input type="text", name="title">
+        <input type="text", name="description">  -->
+
+        {{ form.as_p }}
+
+        <button type="submit", name="newItem", value="newItem">Add Item</button>	
+        
+    </form>
+{% endblock %}

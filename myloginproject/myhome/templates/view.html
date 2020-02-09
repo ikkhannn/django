@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title%}
+View
+{% endblock%}
+
+{% block content%}
+    {% for td in user.projectslist.all %}
+    <p><a href="/projectslist/{{td.id}}">{{td.name}}</a></p>
+    {% endfor %}
+{% endblock %}
