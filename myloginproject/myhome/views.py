@@ -69,7 +69,7 @@ def register(request):
             form = RegisterForm(request.POST)
             if form.is_valid():
                 form.save()
-            return redirect("/home")
+            return redirect("/")
         else:
 
             form= RegisterForm()
@@ -138,3 +138,9 @@ def project_delete(request,pk):
     # In the case of HttpResponseRedirect the first argument can only be a url.
     # redirect which will ultimately return a HttpResponseRedirect can accept a model, view, or url as it's "to" argument. So it is a little more flexible in what it can "redirect" to.
     return redirect('/projectslist/{}'.format(project.projectslist.pk))
+
+def projectslist_delete(request,pk):
+    projectslist=ProjectsList.objects.get(pk=pk)
+    projectslist.delete()
+    
+    return redirect('/viewlist')

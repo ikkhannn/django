@@ -1,20 +1,30 @@
 {% extends "base.html" %}
 
-{% block title%}
-View
-{% endblock%}
+{% block title %}
+    View
+{% endblock %}
 
-{% block content%}
+{% block content %}
+<table>
+    <tr>
+        <th>Project Types</th>
+        <th colspan="2" class="text-center float-right">Options</th>
+
+    </tr>
+
     {% for td in user.projectslist.all %}
-    <p><a href="/projectslist/{{td.id}}">{{td.name}}</a></p>
-    
-    <form action="{% url 'delete' td.id %}">
-        {% csrf_token %}
+        <tr>
+            <td><a href="/projectslist/{{ td.id }}">{{ td.name }}</a></td>
+
+            <form action="{% url 'projectslist_delete' td.id %}">
+                {% csrf_token %}
+
+                    <td><button type="submit" class="btn btn-danger float-right">Delete</button></td>
+
+                </tr>
+
+            </form>
         
-        <button type="submit" class="btn btn-danger float-right">Delete</button>
-
-
-
-    </form>
     {% endfor %}
+</table>
 {% endblock %}
