@@ -116,7 +116,7 @@ def project_update(request, pk):
         if form.is_valid():
             form.save()
             print("done")
-        return redirect('/projectslist/edit/{}'.format(pk))
+        return redirect('/projectslist/{}'.format(project.projectslist.pk))
 
     # project = get_object_or_404(Projects, pk=pk)
     # form = CreateNewProject(request.POST or None)
@@ -131,3 +131,10 @@ def project_update(request, pk):
 #         book.delete()
 #         return redirect('book_list')
 #     return render(request, template_name, {'object':book})
+
+def project_delete(request,pk):
+    project=Projects.objects.get(pk=pk)
+    project.delete()
+    # In the case of HttpResponseRedirect the first argument can only be a url.
+    # redirect which will ultimately return a HttpResponseRedirect can accept a model, view, or url as it's "to" argument. So it is a little more flexible in what it can "redirect" to.
+    return redirect('/projectslist/{}'.format(project.projectslist.pk))

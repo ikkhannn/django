@@ -10,6 +10,7 @@ urlpatterns = [
     path('register',views.register,name='register'),
     path('createlist',views.create,name='create'),
     path('viewlist',views.view,name='view'),
+    path('projectslist/delete/<int:pk>',views.project_delete,name='delete'),
     path('projectslist/edit/<int:pk>', views.project_update, name='project_update'),
 
 ]
