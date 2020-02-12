@@ -17,7 +17,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link" href="/viewlist">Project types</a>
         <a class="nav-item nav-link" href="#">About us</a>
         <a class="nav-item nav-link" href="#">Contact us</a>
@@ -45,6 +45,13 @@
       {% block content %}
       {% endblock %}
   </main>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <span>My crud application built with django</span>
+    </div>
+  </footer>
+<!-- Footer -->
   <script src="{% static 'myhome/js/jquery.js' %}"></script>
 <script src="{% static 'myhome/js/bootstrap.js' %}"></script>
 </body>

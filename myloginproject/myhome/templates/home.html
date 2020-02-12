@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
-  <div style="text-align:center">Hi {{ user.username }}! Welocme to Coding Infinite!!</div>
+  
+  <div class="jumbotron text-center">
+    <h1 class="text-center">Hello {{user.username}}</h1>
+    <br>
+    <br>
+    <h3 class="text-center">Click the button below to create a list of projects</h3>
+    <br>
+    <a href="/createlist" class="btn btn-success text-center">Create list</a>
+
+  </div>
   
 {% endblock %}
