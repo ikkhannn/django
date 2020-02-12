@@ -7,6 +7,7 @@ from .models import ProjectsList,Projects
 import datetime
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 
 
@@ -68,8 +69,12 @@ def register(request):
         if request.method=="POST":
             form = RegisterForm(request.POST)
             if form.is_valid():
-                form.save()
-            return redirect("/")
+                user=form.save()
+                user.refresh_from_db()
+                user.profile.birth_date = form.cleaned_data.get('birth_date')
+                user.profile.location = form.cleaned_data.get('location')
+                user.save()
+                return redirect("/")
         else:
 
             form= RegisterForm()
@@ -106,7 +111,7 @@ def project_update(request, pk):
         else:
             project= Projects.objects.get(pk=pk)
             form= CreateNewProject(instance=project)
-        return render(request,"list.html",{'form':form})
+        return render(request,"update.html",{'form':form})
     else:
         if pk==0:
             form=CreateNewProject(request.POST)
@@ -144,3 +149,30 @@ def projectslist_delete(request,pk):
     projectslist.delete()
     
     return redirect('/viewlist')
+
+def search_project_type(request):
+    
+
+    if request.method == 'GET' and request.user.is_authenticated:
+
+
+        query=request.GET.get('q')
+
+        submitbutton= request.GET.get('submit')
+
+        if query is not None:
+            lookups= Q(name__icontains=query)
+            
+
+            results= request.user.projectslist.filter(lookups).distinct()
+
+            context={'results': results,
+                     'submitbutton': submitbutton}
+
+            return render(request, 'search.html', context)
+
+        else:
+            return render(request, 'search.html')
+
+    else:
+        return render(request, 'search.html')

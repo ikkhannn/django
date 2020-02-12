@@ -13,6 +13,7 @@ urlpatterns = [
     path('viewlist/delete/<int:pk>',views.projectslist_delete,name='projectslist_delete'),
     path('projectslist/delete/<int:pk>',views.project_delete,name='delete'),
     path('projectslist/edit/<int:pk>', views.project_update,name='project_update'),
+    path('searchprojects/',views.search_project_type,name='search_project_type')
 
 ]
 

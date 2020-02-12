@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block content %}
-<table>
+<h1 class="text-center">List of project types</h1>
+<table class="listofprojects table">
     <tr>
         <th>Project Types</th>
         <th colspan="2" class="text-center float-right">Options</th>
@@ -19,7 +20,7 @@
             <form action="{% url 'projectslist_delete' td.id %}">
                 {% csrf_token %}
 
-                    <td><button type="submit" class="btn btn-danger float-right">Delete</button></td>
+                    <td><button type="submit", class="btn btn-danger float-right">Delete</button></td>
 
                 </tr>
 

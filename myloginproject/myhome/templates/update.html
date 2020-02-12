@@ -1,5 +1,13 @@
-<h1>Project Edit</h1>
+{% extends "base.html" %}
+{% block title %}Edit List{% endblock %}
+ 
+{% block content %}
+
+<h1 class="text-center">Project Edit</h1>
 <form method="post">{% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Submit" />
+    
+
+    <div class="text-center"> <button class="btn btn-success" type="submit", name="newItem", value="newItem">Update project</button></div>	
 </form>
+{% endblock %}

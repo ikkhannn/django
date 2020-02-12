@@ -5,8 +5,9 @@
 
 <form method="post" action="/createlist">
     {% csrf_token %}
+    <h1 class="text-center">List of projects</h1>
     {{ form.as_p }}
-    <button type="submit" , name="save">Create New</button>
+    <div class="text-center"><button type="submit" class="btn btn-success" name="save">Create New</button></div>
 
 </form>
 {% endblock %}

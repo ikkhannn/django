@@ -6,10 +6,15 @@
     <h1 class="text-center">Hello {{user.username}}</h1>
     <br>
     <br>
+    {% if user.is_authenticated %}
     <h3 class="text-center">Click the button below to create a list of projects</h3>
     <br>
     <a href="/createlist" class="btn btn-success text-center">Create list</a>
-
+    {% else %}
+    <h3 class="text-center">Click the button below to Register !</h3>
+    <br>
+    <a href="/register" class="btn btn-success text-center">Register !</a>
+    {% endif %}
   </div>
   
 {% endblock %}

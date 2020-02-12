@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}View List{% endblock %} 
+{% block content %}
+
+<h1 class="text-center">Search Page</h1>
+
+<br/>
+<form action="{% url 'search_project_type' %}" method="GET" value="{{request.GET.q}}">
+Search <input type="text" name="q" class="form-control" value="{{request.GET.q}}" placeholder="Search posts"/>
+<br>    
+<input type="submit" class="btn btn-success" name="submit" value="Search"/>
+</form>
+
+
+{% if submitbutton == 'Search' and request.GET.q != '' %}
+{% if results %}
+<h1>Results for <b>{{ request.GET.q }}</b></h1>
+<br/><br/>
+
+{% for result in results %}
+
+{{result.name}}
+<br/>
+
+{{result.content}}
+<br/>
+
+{% endfor %}
+{% else %}
+No search results for this query
+{% endif %}
+{% endif %}
+{% endblock %}

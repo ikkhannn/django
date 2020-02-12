@@ -2,37 +2,41 @@
 {% block title %}View List{% endblock %}
  
 {% block content %}
-    <h1>{{ls.name}}</h1>
+   
     <form method="post" action="#">
     {% csrf_token %}
-        <table>
-            <tr>
-                <th>Title</th>
-                <th colspan="2" class="text-center float-right">Options</th>
-                
-            </tr>
-            
-            {% for item in ls.projects_set.all %}
-                
-                    <tr>
-                    <td><a href="edit/{{item.id}}">{{item.project_title}}</a></td>
-                    <td><a href="edit/{{item.id}}" class="btn btn-secondary ">Update</a></td>
-
-                    
-                    
-                    <td><a href="delete/{{item.id}}" class="btn btn-danger ">Delete</a></td>
-                    </tr>
-            {% endfor %}
         
-        
-    </table>
         
         <!-- <input type="text", name="title">
         <input type="text", name="description">  -->
 
+        <h1 class="text-center"> List Name : {{ls.name}}</h1>
         {{ form.as_p }}
 
-        <button type="submit", name="newItem", value="newItem">Add Item</button>	
+       <div class="text-center"> <button class="btn btn-success" type="submit", name="newItem", value="newItem">Add project</button></div>	
         
     </form>
+    <table class="listofprojects table">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th colspan="2" class="text-center float-right">Options</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in ls.projects_set.all %}
+            
+                <tr>
+                <td><a href="edit/{{item.id}}">{{item.project_title}}</a></td>
+                <td><a href="edit/{{item.id}}" class="btn btn-secondary ">Update</a></td>
+
+                
+                
+                <td><a href="delete/{{item.id}}" class="btn btn-danger ">Delete</a></td>
+                </tr>
+        {% endfor %}
+    </tbody>
+    
+</table>
 {% endblock %}
